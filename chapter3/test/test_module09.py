@@ -9,8 +9,14 @@ def setUpModule():
     global math_obj
     math_obj = mymathlib()
 
+def tearDownModule():
+    '''Called once at the end of the module'''
+    print('In tearDownModule()..!')
+    global math_obj
+    del math_obj
 
-class TestClass10(unittest.TestCase):
+class TestClass09(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls):
         '''Called once before all other methods'''
@@ -20,13 +26,13 @@ class TestClass10(unittest.TestCase):
         '''Called  before every test method'''
         print('In setUp() method.')
     
-    def Test_Case01(self):
+    def test_case01(self):
         print('In Test_Case01')
         self.assertEqual(math_obj.add(4,5),9)
     
-    def Test_Case02(self):
+    def test_case02(self):
         print('In Test_Case02()..')
-        self.assertEqual(math_obj.mul(2,2),10)
+        self.assertEqual(math_obj.mul(2,2),4)
     
     def tearDown(self):
         '''Called once all test methods are ran.'''
@@ -37,11 +43,6 @@ class TestClass10(unittest.TestCase):
         '''Called once after all other methods in the class.'''
         print('In tearDownClass().')
 
-def tearDownModule():
-    '''Called once at the end of the module'''
-    print('In tearDownModule()..!')
-    global math_obj
-    del math_obj
     
 # if __name__ == '__name__':
 #     unittest.main()
